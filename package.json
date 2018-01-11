@@ -10,7 +10,10 @@
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Formatters", "Other"],
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgformatter",
   "repository": {
@@ -20,21 +23,27 @@
   "bugs": {
     "url": "https://github.com/bradymholt/vscode-pgformatter/issues"
   },
-  "activationEvents": ["onLanguage:sql"],
+  "activationEvents": [
+    "onLanguage:sql"
+  ],
   "main": "./out/extension",
   "contributes": {
     "languages": [
       {
         "id": "sql",
-        "aliases": ["SQL"],
-        "extensions": ["sql"]
+        "aliases": [
+          "SQL"
+        ],
+        "extensions": [
+          "sql"
+        ]
       }
     ],
     "configuration": {
       "type": "object",
       "title": "pgFormatter Configuration",
       "properties": {
-        "pgformatter.perlBin": {
+        "pgformatter.perlBinPath": {
           "type": "string",
           "default": "perl",
           "description": "Location of perl binary"
@@ -42,8 +51,7 @@
         "pgformatter.anonymize": {
           "type": "boolean",
           "default": false,
-          "description":
-            "Obscure all literals in queries, useful to hide confidential data before formatting."
+          "description": "Obscure all literals in queries, useful to hide confidential data before formatting."
         },
         "pgformatter.commaStart": {
           "type": "boolean",
@@ -58,7 +66,12 @@
         "pgformatter.functionCase": {
           "type": "string",
           "default": "unchanged",
-          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
+          "enum": [
+            "unchanged",
+            "lowercase",
+            "uppercase",
+            "capitalize"
+          ],
           "description": "Case of the function names."
         },
         "pgformatter.maxLength": {
@@ -87,7 +100,12 @@
         "pgformatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
-          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
+          "enum": [
+            "unchanged",
+            "lowercase",
+            "uppercase",
+            "capitalize"
+          ],
           "description": "Case of the reserved keywords."
         }
       }
@@ -106,5 +124,7 @@
     "typescript": "^2.6.1",
     "vscode": "^1.1.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@bradymholt/pgformatter": "^0.9.0"
+  }
 }

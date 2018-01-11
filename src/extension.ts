@@ -2,8 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { setupOutputHandler, addToOutput } from "./outputHandler";
-import { execSync } from "child_process";
-import path = require("path");
+import { formatSql, IOptions } from "@bradymholt/pgformatter";
 
 function fullDocumentRange(document: vscode.TextDocument): vscode.Range {
   const lastLineId = document.lineCount - 1;
@@ -20,11 +19,12 @@ function getFormattedText(
   config: vscode.WorkspaceConfiguration
 ): string {
   try {
-   return "";
+    let options = <IOptions>(<any>config);
+    let formatted = formatSql(text, options);
+    return formatted;
 
   } catch (err) {
     addToOutput(`ERROR: ${err}`);
-    return text;
   }
 }
 
