@@ -7,10 +7,15 @@
   },
   "version": "0.0.1",
   "publisher": "bradymholt",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "theme": "dark",
+    "color": "#555555"
+  },
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Formatters", "Other"],
+  "categories": ["Languages", "Formatters", "Other"],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgformatter",
   "repository": {

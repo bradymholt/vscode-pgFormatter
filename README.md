@@ -18,6 +18,8 @@ Also, it can be installed with the following command:
 ext install pgFormatter
 ```
 
+**pgFormatter requires [Perl](https://www.perl.org/) to be installed and available**
+
 ## Configuration
 
 This extension contributes the following settings:
