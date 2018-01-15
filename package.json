@@ -43,25 +43,28 @@
       "type": "object",
       "title": "pgFormatter Configuration",
       "properties": {
-        "pgformatter.perlBinPath": {
-          "type": "string",
-          "default": "perl",
-          "description": "Location of perl binary"
+        "pgformatter.spaces": {
+          "type": "number",
+          "description": "Number of spaces to indent the code"
         },
-        "pgformatter.anonymize": {
-          "type": "boolean",
-          "default": false,
-          "description": "Obscure all literals in queries, useful to hide confidential data before formatting."
+        "pgformatter.maxLength": {
+          "type": "number",
+          "description": "Maximum length of a query."
         },
         "pgformatter.commaStart": {
           "type": "boolean",
           "default": false,
-          "description": "In a parameters list, start with the comma."
+          "description": "Use preceding comma in parameter list"
         },
         "pgformatter.commaEnd": {
           "type": "boolean",
           "default": true,
-          "description": "In a parameters list, end with the comma."
+          "description": "Use trailing comma in parameter list"
+        },
+        "pgformatter.noComment": {
+          "type": "boolean",
+          "default": false,
+          "description": "Remove any comments"
         },
         "pgformatter.functionCase": {
           "type": "string",
@@ -72,30 +75,7 @@
             "uppercase",
             "capitalize"
           ],
-          "description": "Case of the function names."
-        },
-        "pgformatter.maxLength": {
-          "type": "number",
-          "description": "Maximum length of a query."
-        },
-        "pgformatter.noComment": {
-          "type": "boolean",
-          "default": false,
-          "description": "Remove any comments"
-        },
-        "pgformatter.placeholder": {
-          "type": "string",
-          "description": "Regex to find code that must not be changed."
-        },
-        "pgformatter.spaces": {
-          "type": "number",
-          "default": 4,
-          "description": "Number of spaces to indent the code."
-        },
-        "pgformatter.separator": {
-          "type": "string",
-          "default": "'",
-          "description": "Dynamic code separator"
+          "description": "Case of the function names"
         },
         "pgformatter.keywordCase": {
           "type": "string",
@@ -106,7 +86,12 @@
             "uppercase",
             "capitalize"
           ],
-          "description": "Case of the reserved keywords."
+          "description": "Case of the reserved keywords"
+        },
+        "pgformatter.perlBinPath": {
+          "type": "string",
+          "default": "perl",
+          "description": "The path to the perl executable"
         }
       }
     }
@@ -125,6 +110,6 @@
     "vscode": "^1.1.6"
   },
   "dependencies": {
-    "@bradymholt/pgformatter": "^0.9.0"
+    "psqlformat": "^0.15.0"
   }
 }
