@@ -1,6 +1,6 @@
 # pgFormatter
 
-A VS Code extension that formats PostgreSQL SQL
+A VS Code extension that beautifies PostgresSQL SQL
 
 ## Features
 
