@@ -17,13 +17,13 @@
   },
   "categories": ["Languages", "Formatters", "Other"],
   "license": "MIT",
-  "homepage": "https://github.com/bradymholt/vscode-pgformatter",
+  "homepage": "https://github.com/bradymholt/vscode-pgFormatter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bradymholt/vscode-pgformatter.git"
+    "url": "https://github.com/bradymholt/vscode-pgFormatter.git"
   },
   "bugs": {
-    "url": "https://github.com/bradymholt/vscode-pgformatter/issues"
+    "url": "https://github.com/bradymholt/vscode-pgFormatter/issues"
   },
   "activationEvents": ["onLanguage:sql"],
   "main": "./out/extension",
