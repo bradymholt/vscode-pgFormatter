@@ -1,4 +1,4 @@
-# pgFormatter
+# pgFormatter [![Build Status](https://travis-ci.org/bradymholt/vscode-pgFormatter.svg?branch=master)](https://travis-ci.org/bradymholt/vscode-pgFormatter)
 
 A VS Code extension that beautifies PostgresSQL SQL
 
