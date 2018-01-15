@@ -10,10 +10,7 @@
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": [
-    "Formatters",
-    "Other"
-  ],
+  "categories": ["Formatters", "Other"],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgformatter",
   "repository": {
@@ -23,20 +20,14 @@
   "bugs": {
     "url": "https://github.com/bradymholt/vscode-pgformatter/issues"
   },
-  "activationEvents": [
-    "onLanguage:sql"
-  ],
+  "activationEvents": ["onLanguage:sql"],
   "main": "./out/extension",
   "contributes": {
     "languages": [
       {
         "id": "sql",
-        "aliases": [
-          "SQL"
-        ],
-        "extensions": [
-          "sql"
-        ]
+        "aliases": ["SQL"],
+        "extensions": ["sql"]
       }
     ],
     "configuration": {
@@ -49,7 +40,7 @@
         },
         "pgformatter.maxLength": {
           "type": "number",
-          "description": "Maximum length of a query."
+          "description": "Maximum length of a query"
         },
         "pgformatter.commaStart": {
           "type": "boolean",
@@ -69,23 +60,13 @@
         "pgformatter.functionCase": {
           "type": "string",
           "default": "unchanged",
-          "enum": [
-            "unchanged",
-            "lowercase",
-            "uppercase",
-            "capitalize"
-          ],
+          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the function names"
         },
         "pgformatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
-          "enum": [
-            "unchanged",
-            "lowercase",
-            "uppercase",
-            "capitalize"
-          ],
+          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the reserved keywords"
         },
         "pgformatter.perlBinPath": {
