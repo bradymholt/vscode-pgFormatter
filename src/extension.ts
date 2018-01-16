@@ -59,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
           token: vscode.CancellationToken
         ): Promise<vscode.TextEdit[]> {
           const text = document.getText();
-          let config = vscode.workspace.getConfiguration("pgformatter");
+          let config = vscode.workspace.getConfiguration("pgFormatter");
 
           let formattedText = getFormattedText(text, config, options);
 

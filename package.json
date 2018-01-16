@@ -1,11 +1,11 @@
 {
   "name": "pgformatter",
   "displayName": "pgFormatter",
-  "description": "A PostgreSQL SQL syntax beautifier",
+  "description": "A PostgreSQL SQL formatter",
   "author": {
     "name": "Brady Holt"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "bradymholt",
   "icon": "icon.png",
   "galleryBanner": {
@@ -40,42 +40,42 @@
       "type": "object",
       "title": "pgFormatter Configuration",
       "properties": {
-        "pgformatter.spaces": {
+        "pgFormatter.spaces": {
           "type": "number",
           "description": "Number of spaces to indent the code"
         },
-        "pgformatter.maxLength": {
+        "pgFormatter.maxLength": {
           "type": "number",
           "description": "Maximum length of a query"
         },
-        "pgformatter.commaStart": {
+        "pgFormatter.commaStart": {
           "type": "boolean",
           "default": false,
           "description": "Use preceding comma in parameter list"
         },
-        "pgformatter.commaEnd": {
+        "pgFormatter.commaEnd": {
           "type": "boolean",
           "default": true,
           "description": "Use trailing comma in parameter list"
         },
-        "pgformatter.noComment": {
+        "pgFormatter.noComment": {
           "type": "boolean",
           "default": false,
           "description": "Remove any comments"
         },
-        "pgformatter.functionCase": {
+        "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
           "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the function names"
         },
-        "pgformatter.keywordCase": {
+        "pgFormatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
           "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the reserved keywords"
         },
-        "pgformatter.perlBinPath": {
+        "pgFormatter.perlBinPath": {
           "type": "string",
           "default": "perl",
           "description": "The path to the perl executable"
