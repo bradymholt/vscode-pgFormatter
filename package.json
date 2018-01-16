@@ -5,7 +5,7 @@
   "author": {
     "name": "Brady Holt"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "bradymholt",
   "icon": "icon.png",
   "galleryBanner": {
@@ -16,6 +16,7 @@
     "vscode": "^1.19.0"
   },
   "categories": ["Languages", "Formatters", "Other"],
+  "keywords": ["pgsql", "postgres", "PostgreSQL", "SQL", "Formatting"],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgFormatter",
   "repository": {
