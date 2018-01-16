@@ -15,7 +15,6 @@ To install this extension:
 
 1. Press `Ctrl + Shift + X` (`Cmd + Shift + X` on macOS), wait a moment while the list of available extensions is populated
 2. Type `pgFormatter` and Click "Install"
-3. For more guidance view [VS Code Extension Gallery](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgFormatter)
 
 ## Configuration
 
