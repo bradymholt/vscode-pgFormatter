@@ -1,34 +1,31 @@
 # pgFormatter [![Build Status](https://travis-ci.org/bradymholt/vscode-pgFormatter.svg?branch=master)](https://travis-ci.org/bradymholt/vscode-pgFormatter)
 
-A VS Code extension that beautifies PostgresSQL SQL
+A VS Code extension that beautifies PostgresSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
 
 ## Features
 
 * Supports keywords from SQL-92, SQL-99, SQL-2003, SQL-2008, SQL-2011 and PostgreSQL specifics keywords
+* Provides configuration to control formatting style
 
 ## Installation
 
-Install through VS Code extensions area. Search for `pgFormatter`
+**pgFormatter requires [Perl](https://www.perl.org/) to be installed and available**. You can either add it to your PATH or set the `pgformatter.perlBinPath` configuration setting.
 
-[Visual Studio Code Market Place: pgFormatter](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgFormatter)
+To install this extension:
 
-Also, it can be installed with the following command:
-
-```
-ext install pgFormatter
-```
-
-**pgFormatter requires [Perl](https://www.perl.org/) to be installed and available**
+1. Press `Ctrl + Shift + X` (`Cmd + Shift + X` on macOS), wait a moment while the list of available extensions is populated
+2. Type `pgFormatter` and Click "Install"
+3. For more guidance view [VS Code Extension Gallery](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgFormatter)
 
 ## Configuration
 
-This extension contributes the following settings:
+This extension has the following configuration settings:
 
-* `pgformatter.spaces`: Number of spaces to indent the code (Type: number; Default: 2)
-* `pgformatter.maxLength`: Maximum length of a query (Type: string; Default: null)
-* `pgformatter.commaStart`: Use preceding comma in parameter list (Type: boolean; Default: false)
-* `pgformatter.commaEnd`: Use trailing comma in parameter list (Type: boolean; Default: true)
-* `pgformatter.noComment`: Remove any comments (Type: boolean; Default: false)
-* `pgformatter.functionCase`: Case of the function names (Type: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "unchanged")
-* `pgformatter.keywordCase`: Case of the reserved keywords (Type: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "uppercase")
-* `pgformatter.perlBinPath`: The path to the perl executable (Type: String; Default: "perl")
+* `pgformatter.spaces` - Number of spaces to indent the code (Default: 2)
+* `pgformatter.maxLength` - Maximum length of a query
+* `pgformatter.commaStart` - Use preceding comma in parameter list (Default: false)
+* `pgformatter.commaEnd` - Use trailing comma in parameter list (Default: true)
+* `pgformatter.noComment` - Remove any comments (Default: false)
+* `pgformatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "unchanged")
+* `pgformatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "uppercase")
+* `pgformatter.perlBinPath` - The path to the perl executable (Default: "perl")
