@@ -36,3 +36,13 @@ This extension has the following configuration settings:
 * `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "unchanged")
 * `pgFormatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "uppercase")
 * `pgFormatter.perlBinPath` - The path to the perl executable (Default: "perl")
+
+### Ignoring Files
+
+To ignore a file and prevent it from being formatted, you can simply add a comment on the first line of the file with the contents: "pgFormatter-ignore". For example:
+
+```
+-- pgFormatter-ignore
+
+select id from people;
+```
