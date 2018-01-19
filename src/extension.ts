@@ -53,24 +53,36 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentFormattingEditProvider(
       { language: "sql" },
       {
-        async provideDocumentFormattingEdits(
-          document: vscode.TextDocument,
-          options: vscode.FormattingOptions,
-          token: vscode.CancellationToken
-        ): Promise<vscode.TextEdit[]> {
-          const text = document.getText();
-          let config = vscode.workspace.getConfiguration("pgFormatter");
-
-          let formattedText = getFormattedText(text, config, options);
-
-          return [
-            vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
-          ];
-        }
+        provideDocumentFormattingEdits
       }
     ),
     setupOutputHandler()
   );
+}
+
+export async function provideDocumentFormattingEdits(
+  document: vscode.TextDocument,
+  options: vscode.FormattingOptions,
+  token: vscode.CancellationToken
+): Promise<vscode.TextEdit[]> {
+  const edits: vscode.TextEdit[] = [];
+
+  if (document.lineCount >= 1) {
+    let firstLine = document.lineAt(0);
+    if (firstLine.text.indexOf("pgFormatter-ignore") == -1) {
+      // check for ignore text
+
+      const text = document.getText();
+      let config = vscode.workspace.getConfiguration("pgFormatter");
+
+      let formattedText = getFormattedText(text, config, options);
+      edits.push(
+        vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
+      );
+    }
+  }
+
+  return edits;
 }
 
 // this method is called when your extension is deactivated

@@ -1,6 +1,7 @@
 import * as assert from "assert";
 import { workspace } from "vscode";
 import * as extension from "../extension";
+import { mockupDocument } from "./util";
 
 suite("Extension Tests", () => {
   test("Formatting SQL", () => {
@@ -55,5 +56,20 @@ FROM
         people
 `
     );
+  });
+
+  test("ignoring a file", async () => {
+    let document = mockupDocument(`\
+-- pgFormatter-ignore
+
+select id, first_name from people
+`);
+    let edits = await extension.provideDocumentFormattingEdits(
+      document,
+      <extension.FormattingOptions>{ tabSize: 8 },
+      null
+    );
+
+    assert.equal(edits.length, 0);
   });
 });
