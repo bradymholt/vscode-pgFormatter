@@ -20,7 +20,7 @@ To install this extension:
 
 This extension is made available to files recognized as "SQL" language files in VS Code. Generally, files with the `.sql` extension will be recognized as SQL files. You can use the [files.associations](https://code.visualstudio.com/updates/vMarch#_file-to-language-association) setting to customize which files are recognized as SQL files.
 
-To use pgFormatter, you simly need to run the `editor.action.formatDocument` command which is, by default, mapped to the `Ctrl + K, Ctrl + D` (`Cmd + K, Cmd + D` on macOS) keyboard shortcut.
+To use pgFormatter, you simply need to run the `editor.action.formatDocument` command which is, by default, mapped to the `Ctrl + K, Ctrl + D` (`Cmd + K, Cmd + D` on macOS) keyboard shortcut.
 
 pgFormatter also works with the `"editor.formatOnSave": true` setting so that when when saving your file, formatting will be automatically performed.
 
