@@ -1,15 +1,13 @@
 package pgFormatter::CLI;
 
-# UTF8 boilerplace, per http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by-default/
-use v5.14;    # It was released in 2011, so I guess we can assume anything should have it by now.
 use strict;
 use warnings;
-use warnings qw( FATAL utf8 );
-use utf8;
-use open qw( :std :utf8 );
-use Encode qw( decode );
 
 # UTF8 boilerplace, per http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by-default/
+use warnings qw( FATAL );
+use utf8;
+use open qw( :std );
+use Encode qw( decode );
 
 =head1 NAME
 
@@ -17,12 +15,12 @@ pgFormatter::CLI - Implementation of command line program to format SQL queries.
 
 =head1 VERSION
 
-Version 2.1
+Version 3.0
 
 =cut
 
 # Version of pgFormatter
-our $VERSION = '2.1';
+our $VERSION = '3.0';
 
 use autodie;
 use pgFormatter::Beautify;
@@ -87,19 +85,23 @@ sub beautify {
     $args{ 'uc_keywords' }  = $self->{ 'cfg' }->{ 'keyword-case' };
     $args{ 'uc_functions' } = $self->{ 'cfg' }->{ 'function-case' };
     $args{ 'placeholder' }  = $self->{ 'cfg' }->{ 'placeholder' };
-    $args{ 'separator' }  = $self->{ 'cfg' }->{ 'separator' };
-    $args{ 'comma' }  = $self->{ 'cfg' }->{ 'comma' };
+    $args{ 'separator' }    = $self->{ 'cfg' }->{ 'separator' };
+    $args{ 'comma' }        = $self->{ 'cfg' }->{ 'comma' };
+    $args{ 'comma_break' }  = $self->{ 'cfg' }->{ 'comma-break' };
+    $args{ 'format' }       = $self->{ 'cfg' }->{ 'format' };
+    $args{ 'maxlength' }    = $self->{ 'cfg' }->{ 'maxlength' };
+
+    if ($self->{ 'query' } && ($args{ 'maxlength' } && length($self->{ 'query' }) > $args{ 'maxlength' })) {
+        $self->{ 'query' } = substr($self->{ 'query' }, 0, $args{ 'maxlength' })
+    }
 
     my $beautifier = pgFormatter::Beautify->new( %args );
     $beautifier->query( $self->{ 'query' } );
     $beautifier->anonymize() if $self->{ 'cfg' }->{ 'anonymize' };
-    if (lc($self->{ 'cfg' }->{ 'format' }) eq 'text') {
-        $beautifier->beautify();
-    } elsif (lc($self->{ 'cfg' }->{ 'format' }) eq 'html') {
-        $beautifier->html_highlight_code();
-    }
+    $beautifier->beautify();
 
     $self->{ 'ready' } = $beautifier->content();
+
     return;
 }
 
@@ -167,6 +169,7 @@ Options:
     -a | --anonymize      : obscure all literals in queries, useful to hide
                             confidential data before formatting.
     -b | --comma-start    : in a parameters list, start with the comma (see -e)
+    -B | --comma-break    : in insert statement, add a newline after each comma
     -d | --debug          : enable debug mode. Disabled by default.
     -e | --comma-end      : in a parameters list, end with the comma (default)
     -f | --function-case N: Change the case of the reserved keyword. Default is
@@ -230,11 +233,13 @@ sub get_command_line_args {
     my @options = (
         'anonymize|a!',
         'comma-start|b!',
+        'comma-break|B!',
         'comma-end|e!',
         'debug|d!',
 	'format|F=s',
         'function-case|f=i',
         'help|h!',
+        'maxlength|m=i',
         'nocomment|n!',
         'output|o=s',
         'placeholder|p=s',
@@ -259,6 +264,8 @@ sub get_command_line_args {
     $cfg{ 'keyword-case' }  //= 2;
     $cfg{ 'comma' }           = 'end';
     $cfg{ 'format' }        //= 'text';
+    $cfg{ 'comma-break' }   //= 0;
+    $cfg{ 'maxlength' }     //= 0;
 
     if (!grep(/^$cfg{ 'format' }$/i, 'text', 'html')) {
         printf 'FATAL: unknow output format: %s%s', $cfg{ 'format' } , "\n";
@@ -322,7 +329,7 @@ Please report any bugs or feature requests to: https://github.com/darold/pgForma
 
 =head1 COPYRIGHT
 
-Copyright 2012-2017 Gilles Darold. All rights reserved.
+Copyright 2012-2018 Gilles Darold. All rights reserved.
 
 =head1 LICENSE
 

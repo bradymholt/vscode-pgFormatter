@@ -1,15 +1,9 @@
 package pgFormatter::CGI;
 
-# UTF8 boilerplace, per http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by-default/
-use v5.14;    # It was released in 2011, so I guess we can assume anything should have it by now.
 use strict;
 use warnings;
-use warnings qw( FATAL utf8 );
-use utf8;
-use open qw( :std :utf8 );
+use warnings qw( FATAL );
 use Encode qw( decode );
-
-# UTF8 boilerplace, per http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by-default/
 
 =head1 NAME
 
@@ -17,12 +11,12 @@ pgFormatter::CGI - Implementation of CGI-BIN script to format SQL queries.
 
 =head1 VERSION
 
-Version 2.1
+Version 3.0
 
 =cut
 
 # Version of pgFormatter
-our $VERSION = '2.1';
+our $VERSION = '3.0';
 
 use pgFormatter::Beautify;
 use File::Basename;
@@ -97,9 +91,10 @@ configuration for pgFormatter::Beautify module.
 sub set_config {
     my $self = shift;
 
-    $self->{ 'program_name' } = basename( $0 );
+    $self->{ 'program_name' } = 'pgFormatter';
+    $self->{ 'program_name' } =~ s/\.[^\.]+$//;
 
-    $self->{ 'maxlength' }    = 10000;
+    $self->{ 'maxlength' }    = 100000;
     $self->{ 'spaces' }       = 4;
     $self->{ 'outfile' }      = '';
     $self->{ 'outdir' }       = '';
@@ -118,11 +113,14 @@ sub set_config {
     $self->{ 'anonymize' }    = 0;
     $self->{ 'separator' }    = '';
     $self->{ 'comma' }        = 'end';
+    $self->{ 'format' }       = 'html';
+    $self->{ 'comma_break' }  = 0;
 
     # Filename to load tracker and ad to be included respectively in the
     # HTML head and the bottom of the HTML page.
     $self->{ 'bottom_ad_file' }  = 'bottom_ad_file.txt';
     $self->{ 'head_track_file' } = 'head_track_file.txt';
+    # CSS file to load if exists to override default style
     $self->{ 'css_file' }        = 'custom_css_file.css';
 
     return;
@@ -156,7 +154,7 @@ sub get_params {
     # shortcut
     my $cgi = $self->{ 'cgi' };
 
-    for my $param_name ( qw( colorize spaces uc_keyword uc_function content nocomment show_example anonymize separator comma ) ) {
+    for my $param_name ( qw( colorize spaces uc_keyword uc_function content nocomment show_example anonymize separator comma comma_break) ) {
         $self->{ $param_name } = $cgi->param( $param_name ) if defined $cgi->param( $param_name );
     }
 
@@ -164,15 +162,16 @@ sub get_params {
     return unless $filename;
 
     my $type = $cgi->uploadInfo( $filename )->{ 'Content-Type' };
-    if ( $type eq 'text/plain' ) {
+    if ( $type eq 'text/plain' || $type eq 'text/x-sql' || $type eq 'application/sql') {
         local $/ = undef;
         my $fh = $cgi->upload( 'filetoload' );
-        $self->{ 'content' } = <$fh>;
+	binmode $fh;
+        $self->{ 'content' } = <$fh>; 
     }
     else {
         $self->{ 'colorize' }   = 0;
         $self->{ 'uc_keyword' } = 0;
-        $self->{ 'content' }    = "FATAL: Only text/plain files are supported!";
+        $self->{ 'content' }    = "FATAL: Only text/plain files are supported! Found $type";
     }
 
     return;
@@ -194,6 +193,7 @@ sub sanitize_params {
     $self->{ 'show_example' } = 0 if $self->{ 'show_example' } !~ /^(0|1)$/;
     $self->{ 'separator' }    = '' if ($self->{ 'separator' } eq "'" or length($self->{ 'separator' }) > 6);
     $self->{ 'comma' }        = 'end' if ($self->{ 'comma' } ne 'start');
+    $self->{ 'comma_break' }  = 0 if ($self->{ 'comma_break' } !~ /^(0|1)$/);
 
     if ( $self->{ 'show_example' } ) {
         $self->{ 'content' } = q{
@@ -222,15 +222,19 @@ sub beautify_query {
     $args{ 'uc_functions' } = $self->{ 'uc_function' };
     $args{ 'separator' }    = $self->{ 'separator' };
     $args{ 'comma' }        = $self->{ 'comma' };
+    $args{ 'format' }       = $self->{ 'format' };
+    $args{ 'colorize' }     = $self->{ 'colorize' };
+    $args{ 'comma_break' }  = $self->{ 'comma_break' };
 
     $self->{ 'content' } = &remove_extra_parenthesis($self->{ 'content' } ) if ($self->{ 'content' } );
 
     my $beautifier = pgFormatter::Beautify->new( %args );
     $beautifier->query( $self->{ 'content' } );
     $beautifier->anonymize() if $self->{ 'anonymize' };
-    $beautifier->html_highlight_code();
+    $beautifier->beautify();
 
     $self->{ 'content' } = $beautifier->content();
+
     return;
 }
 
@@ -253,10 +257,11 @@ Outputs body of the page.
 sub print_body {
     my $self = shift;
 
-    my $chk_nocomment = $self->{ 'nocomment' } ? 'checked="checked" ' : '';
-    my $chk_colorize  = $self->{ 'colorize' }  ? 'checked="checked" ' : '';
-    my $chk_anonymize = $self->{ 'anonymize' } ? 'checked="checked" ' : '';
-    my $chk_comma     = $self->{ 'comma' } eq 'start' ? 'checked="checked" ' : '';
+    my $chk_nocomment   = $self->{ 'nocomment' } ? 'checked="checked" ' : '';
+    my $chk_colorize    = $self->{ 'colorize' }  ? 'checked="checked" ' : '';
+    my $chk_anonymize   = $self->{ 'anonymize' } ? 'checked="checked" ' : '';
+    my $chk_comma       = $self->{ 'comma' } eq 'start' ? 'checked="checked" ' : '';
+    my $chk_comma_break = $self->{ 'comma_break' } ? 'checked="checked" ' : '';
 
     my %kw_toggle = ( 0 => '', 1 => '', 2 => '', 3 => '' );
     $kw_toggle{ $self->{ 'uc_keyword' } } = ' selected="selected"';
@@ -282,7 +287,10 @@ sub print_body {
       <label for="id_anonymize">Anonymize values in queries</label>
       <br />
       <input type="checkbox" id="id_comma" name="comma" value="start" $chk_comma/>
-      <label for="id_comma">comma at beginning</label>
+      <label for="id_comma">Comma at beginning</label>
+      <br />
+      <input type="checkbox" id="id_comma_break" name="comma_break" value="1" $chk_comma_break/>
+      <label for="id_comma_break">New-line after comma (insert)</label>
       </div>
     </fieldset>
       <br />
@@ -312,10 +320,12 @@ sub print_body {
         <div class="smaller">(set it to 0 to obtain a single line statement)</div>
       </div>
     </fieldset>
-    <p align="center"><input type="button" value="Reset all" onclick="document.location.href='$service_url'; return true;"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Format my code" onclick="document.forms[0].submit();"/></p>
+    <p align="center">
+    <input type="button" value="Clear code" onclick="document.forms[0].submit();"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Format my code" onclick="document.forms[0].submit();"/>
     <input type="hidden" name="show_example" value="0" />
     <br />
-    <p align="center"><input type="button" value="Load an example" onclick="document.forms[0].show_example.value=1; document.forms[0].submit();"/></p>
+    <br />
+    <input type="button" value="&nbsp;&nbsp;Reset all&nbsp;&nbsp;" onclick="document.location.href='$service_url'; return true;"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Load an example" onclick="document.forms[0].show_example.value=1; document.forms[0].submit();"/></p>
     <input type="hidden" name="load_from_file" value="0" />
     <p align="center">
     <span style="position: relative">
@@ -361,7 +371,7 @@ sub print_footer {
 
     print $ad_content;
     print
-    qq{ <div class="footer"> Service provided by <a href="$self->{ 'download_url' }" target="_new">$self->{ 'program_name' } $VERSION</a>. Development code available on <a href="$self->{ 'project_url' }" target="_new">GitHub.org</a> </div> };
+    qq{<p>&nbsp;</p> <div class="footer"> Service provided by <a href="$self->{ 'download_url' }" target="_new">$self->{ 'program_name' } $VERSION</a>. Development code available on <a href="$self->{ 'project_url' }" target="_new">GitHub.org</a> </div> };
     print " </div> </body> </html>\n";
     return;
 }
@@ -395,7 +405,7 @@ Outputs page headers - both HTTP level headers, and HTML.
 
 sub print_headers {
     my $self = shift;
-    print $self->{ 'cgi' }->header();
+    print $self->{ 'cgi' }->header(-charset => 'utf-8');
 
     my $date = localtime( time );
 
@@ -414,18 +424,34 @@ sub print_headers {
 <meta HTTP-EQUIV="Expires" CONTENT="$date">
 <meta HTTP-EQUIV="Generator" CONTENT="$self->{ 'program_name'} v$VERSION">
 <meta HTTP-EQUIV="Date" CONTENT="$date">
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="shortcut icon" href="icon_pgformatter.ico" />
 <meta name="description" content="Free online sql formatting tool, beautify sql code instantly for PostgreSQL, SQL-92, SQL-99, SQL-2003, SQL-2008 and SQL-2011" />
 <meta name="keywords" content="sql formatter,sql beautifier,format sql,formatting sql" />
 $track_content
 <style type="text/css">
 $style_content
+.logopart {
+font-size:32px;
+font-weight:bold;
+font-color:#ff7400;
+font-family: Lucida Sans, Arial, Helvetica, sans-serif;
+overflow: hidden;
+padding-left: 100px;
+}
+.logo {
+float: left;
+margin-left: -100px;
+}
 </style>
 <script type="text/javascript">
 <!--
 var done = 0;
 function set_bg_color(id, color) {
 document.getElementById(id).style.background=color;
+}
+function clear_content(id, msg) {
+document.getElementById(id).value=msg;
 }
 function maxlength_textarea(objtextarea,maxlength) {
 if (objtextarea.value.length > maxlength) {
@@ -438,14 +464,16 @@ if (objtextarea.value.length > maxlength) {
 </head>
 <body>
 <div id="content">
-
-<a href="$self->{ 'service_url' }"><h1 id="top">$self->{ 'program_name' }</h1></a>
-<p>
-Free Online version of $self->{ 'program_name' } a PostgreSQL SQL syntax beautifier (no line limit here up to $self->{ 'maxlength' } characters).
-</p>
-<p>
-This SQL formatter/beautifier supports keywords from SQL-92, SQL-99, SQL-2003, SQL-2008, SQL-2011 and PostgreSQL specifics keywords. May works with any other databases too.
-</p>
+<table>
+<tr><td width="330">
+<div class="logopart">
+<a href="$self->{ 'service_url' }"><img class="logo" src="logo_pgformatter.png"/></a><p>pgFormatter</p>
+</div>
+</td><td width="1000">
+Free Online version of $self->{ 'program_name' } a PostgreSQL SQL syntax beautifier (no line limit here up to $self->{ 'maxlength' } characters).  This SQL formatter/beautifier supports keywords from SQL-92, SQL-99, SQL-2003, SQL-2008, SQL-2011 and PostgreSQL specifics keywords.  May works with any other databases too.
+</td>
+</tr>
+</table>
 _END_OF_HTML_HEADER_
     return;
 }
@@ -466,7 +494,7 @@ Please report any bugs or feature requests to: https://github.com/darold/pgForma
 
 =head1 COPYRIGHT
 
-Copyright 2012-2017 Gilles Darold. All rights reserved.
+Copyright 2012-2018 Gilles Darold. All rights reserved.
 
 =head1 LICENSE
 
@@ -515,7 +543,7 @@ box-shadow:3px 3px 6px 2px #A9A9A9;
 -webkit-box-shadow:3px 3px 6px #A9A9A9;
 }
 textarea#sqlcontent {
-width: 800px;
+width: 1000px;
 height: 400px;
 border: 3px solid #cccccc;
 padding: 5px;
@@ -565,6 +593,7 @@ box-shadow:3px 3px 6px 2px #A9A9A9;
 .sql .kw3_l {color: #993333; text-transform: lowercase;}
 .sql .kw3_c {color: #993333; text-transform: capitalize;}
 .sql .br0 {color: #66cc66;}
+.sql .br1 {color: #3b3ba2;}
 .sql .sy0 {color: #000000;}
 .sql .st0 {color: #ff0000;}
 .sql .nu0 {color: #cc66cc;}
