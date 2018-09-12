@@ -15,8 +15,18 @@
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Languages", "Formatters", "Other"],
-  "keywords": ["pgsql", "postgres", "PostgreSQL", "SQL", "Formatting"],
+  "categories": [
+    "Languages",
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "pgsql",
+    "postgres",
+    "PostgreSQL",
+    "SQL",
+    "Formatting"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgFormatter",
   "repository": {
@@ -26,14 +36,20 @@
   "bugs": {
     "url": "https://github.com/bradymholt/vscode-pgFormatter/issues"
   },
-  "activationEvents": ["onLanguage:sql"],
+  "activationEvents": [
+    "onLanguage:sql"
+  ],
   "main": "./out/extension",
   "contributes": {
     "languages": [
       {
         "id": "sql",
-        "aliases": ["SQL"],
-        "extensions": ["sql"]
+        "aliases": [
+          "SQL"
+        ],
+        "extensions": [
+          "sql"
+        ]
       }
     ],
     "configuration": {
@@ -66,13 +82,23 @@
         "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
-          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
+          "enum": [
+            "unchanged",
+            "lowercase",
+            "uppercase",
+            "capitalize"
+          ],
           "description": "Case of the function names"
         },
         "pgFormatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
-          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
+          "enum": [
+            "unchanged",
+            "lowercase",
+            "uppercase",
+            "capitalize"
+          ],
           "description": "Case of the reserved keywords"
         },
         "pgFormatter.perlBinPath": {
@@ -92,9 +118,9 @@
     "vscode:publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.42",
-    "@types/node": "^9.3.0",
-    "typescript": "^2.6.1",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.9.4",
+    "typescript": "^3.0.3",
     "vscode": "^1.1.6"
   },
   "dependencies": {
