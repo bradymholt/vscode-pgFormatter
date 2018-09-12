@@ -1,7 +1,6 @@
-import * as assert from "assert";
-import { workspace } from "vscode";
 import * as extension from "../extension";
 import { mockupDocument } from "./util";
+import * as assert from 'assert';
 
 suite("Extension Tests", () => {
   test("Formatting SQL", () => {
