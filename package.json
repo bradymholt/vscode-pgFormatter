@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/bradymholt/vscode-pgFormatter/issues"
   },
-  "activationEvents": ["onLanguage:sql"],
+  "activationEvents": ["onLanguage:sql", "onLanguage:pgsql"],
   "main": "./out/extension",
   "contributes": {
     "languages": [
