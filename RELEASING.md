@@ -1,0 +1,2 @@
+- Bump version in package.json and commit
+- Run `npm run vscode:publish`
