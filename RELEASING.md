@@ -1,2 +1,4 @@
-- Bump version in package.json and commit
+- Bump version in package.json
+- Add entry in `CHANGELOG.md`.
+- Commit changes
 - Run `npm run vscode:publish`
