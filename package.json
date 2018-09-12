@@ -5,7 +5,7 @@
   "author": {
     "name": "Brady Holt"
   },
-  "version": "1.3.0",
+  "version": "1.4.0",
   "publisher": "bradymholt",
   "icon": "icon.png",
   "galleryBanner": {
@@ -15,18 +15,8 @@
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": [
-    "Languages",
-    "Formatters",
-    "Other"
-  ],
-  "keywords": [
-    "pgsql",
-    "postgres",
-    "PostgreSQL",
-    "SQL",
-    "Formatting"
-  ],
+  "categories": ["Programming Languages", "Formatters", "Other"],
+  "keywords": ["pgsql", "postgres", "PostgreSQL", "SQL", "Formatting"],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgFormatter",
   "repository": {
@@ -36,20 +26,14 @@
   "bugs": {
     "url": "https://github.com/bradymholt/vscode-pgFormatter/issues"
   },
-  "activationEvents": [
-    "onLanguage:sql"
-  ],
+  "activationEvents": ["onLanguage:sql", "onLanguage:pgsql"],
   "main": "./out/extension",
   "contributes": {
     "languages": [
       {
         "id": "sql",
-        "aliases": [
-          "SQL"
-        ],
-        "extensions": [
-          "sql"
-        ]
+        "aliases": ["SQL"],
+        "extensions": ["sql"]
       }
     ],
     "configuration": {
@@ -82,23 +66,13 @@
         "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
-          "enum": [
-            "unchanged",
-            "lowercase",
-            "uppercase",
-            "capitalize"
-          ],
+          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the function names"
         },
         "pgFormatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
-          "enum": [
-            "unchanged",
-            "lowercase",
-            "uppercase",
-            "capitalize"
-          ],
+          "enum": ["unchanged", "lowercase", "uppercase", "capitalize"],
           "description": "Case of the reserved keywords"
         },
         "pgFormatter.perlBinPath": {
