@@ -15,7 +15,7 @@
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Languages", "Formatters", "Other"],
+  "categories": ["Programming Languages", "Formatters", "Other"],
   "keywords": ["pgsql", "postgres", "PostgreSQL", "SQL", "Formatting"],
   "license": "MIT",
   "homepage": "https://github.com/bradymholt/vscode-pgFormatter",
