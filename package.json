@@ -32,8 +32,8 @@
     "languages": [
       {
         "id": "sql",
-        "aliases": ["SQL"],
-        "extensions": ["sql"]
+        "aliases": ["SQL", "sql", "pgsql"],
+        "extensions": ["sql", "pgsql"]
       }
     ],
     "configuration": {
