@@ -10,7 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Add language bindings for pgsql extension
 
-## [1.5.0] - 2018-09-12
+## [1.4.0] - 2018-09-12
 
 ### Changed
 
