@@ -14,7 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
-* Upgrades pgFormatter to 3.0
+* Upgrades pgFormatter to 3.1
 
 ## [1.3.0] - 2018-01-19
 
