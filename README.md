@@ -1,6 +1,6 @@
 # pgFormatter [![Build Status](https://travis-ci.org/bradymholt/vscode-pgFormatter.svg?branch=master)](https://travis-ci.org/bradymholt/vscode-pgFormatter)
 
-A VS Code extension that formats PostgresSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
+A VS Code extension that formats PostgreSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
 
 ## Features
 
@@ -31,6 +31,7 @@ This extension has the following configuration settings:
 * `pgFormatter.spaces` - Number of spaces to indent the code (Default: 2)
 * `pgFormatter.maxLength` - Maximum length of a query
 * `pgFormatter.commaStart` - Use preceding comma in parameter list (Default: false)
+* `pgFormatter.commaBreak` - In insert statement, add a newline after each comma (Default: false)
 * `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: true)
 * `pgFormatter.noComment` - Remove any comments (Default: false)
 * `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "unchanged")

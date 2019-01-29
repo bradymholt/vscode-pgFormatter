@@ -73,6 +73,11 @@
           "default": false,
           "description": "Use preceding comma in parameter list"
         },
+        "pgFormatter.commaBreak": {
+          "type": "boolean",
+          "default": false,
+          "description": "In insert statement, add a newline after each comma"
+        },
         "pgFormatter.commaEnd": {
           "type": "boolean",
           "default": true,

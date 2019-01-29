@@ -4,6 +4,12 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.5.2] - 2019-01-29
+
+### Changed
+
+* Add support for commaBreak
+
 ## [1.5.0] - 2018-09-12
 
 ### Changed
