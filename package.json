@@ -69,6 +69,11 @@
           "default": false,
           "description": "Use preceding comma in parameter list"
         },
+        "pgFormatter.commaBreak": {
+          "type": "boolean",
+          "default": false,
+          "description": "In insert statement, add a newline after each comma"
+        },
         "pgFormatter.commaEnd": {
           "type": "boolean",
           "default": true,
@@ -100,6 +105,16 @@
             "capitalize"
           ],
           "description": "Case of the reserved keywords"
+        },
+        "pgFormatter.formatType": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use another formatting type for some statements"
+        },
+        "pgFormatter.placeholder": {
+          "type": "string",
+          "default": null,
+          "description": "Regex to find code that must not be changed"
         },
         "pgFormatter.perlBinPath": {
           "type": "string",
