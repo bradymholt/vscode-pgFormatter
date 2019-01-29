@@ -29,7 +29,6 @@ pgFormatter also works with the `"editor.formatOnSave": true` setting so that wh
 This extension has the following configuration settings:
 
 * `pgFormatter.spaces` - Number of spaces to indent the code (Default: 2)
-* `pgFormatter.maxLength` - Maximum length of a query
 * `pgFormatter.commaStart` - Use preceding comma in parameter list (Default: false)
 * `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: true)
 * `pgFormatter.noComment` - Remove any comments (Default: false)

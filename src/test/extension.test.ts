@@ -1,6 +1,6 @@
 import * as extension from "../extension";
 import { mockupDocument } from "./util";
-import * as assert from 'assert';
+import * as assert from "assert";
 
 suite("Extension Tests", () => {
   test("Formatting SQL", () => {
@@ -35,6 +35,19 @@ SELECT
    first_name
 FROM
    people
+`
+    );
+  });
+
+  test("maxLength", () => {
+    let output = extension.getFormattedText(
+      `-- This is a really long comment that we do not expect to be truncated`,
+      <extension.WorkspaceConfiguration>(<any>{ maxLength: 80 }),
+      <extension.FormattingOptions>{}
+    );
+    assert.equal(
+      output,
+      `-- This is a really long comment that we do not expect to be truncated
 `
     );
   });

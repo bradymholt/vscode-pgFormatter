@@ -23,6 +23,10 @@ export function getFormattedText(
 ): string {
   try {
     let formattingOptions: IOptions = <any>Object.assign({}, config);
+    
+    // maxLength support has been removed and the following prevents
+    // old settings from using it
+    formattingOptions.maxLength = null;
 
     // Convert option strings to enums
     if (config.functionCase != null) {

@@ -64,14 +64,15 @@
           "type": "number",
           "description": "Number of spaces to indent the code"
         },
-        "pgFormatter.maxLength": {
-          "type": "number",
-          "description": "Maximum length of a query"
-        },
         "pgFormatter.commaStart": {
           "type": "boolean",
           "default": false,
           "description": "Use preceding comma in parameter list"
+        },
+        "pgFormatter.commaBreak": {
+          "type": "boolean",
+          "default": false,
+          "description": "In insert statement, add a newline after each comma"
         },
         "pgFormatter.commaEnd": {
           "type": "boolean",
@@ -105,6 +106,16 @@
           ],
           "description": "Case of the reserved keywords"
         },
+        "pgFormatter.formatType": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use another formatting type for some statements"
+        },
+        "pgFormatter.placeholder": {
+          "type": "string",
+          "default": null,
+          "description": "Regex to find code that must not be changed"
+        },
         "pgFormatter.perlBinPath": {
           "type": "string",
           "default": "perl",
@@ -123,11 +134,11 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.9.4",
-    "typescript": "^3.0.3",
-    "vscode": "^1.1.6"
+    "@types/node": "^10.12.19",
+    "typescript": "^3.2.4",
+    "vscode": "^1.1.28"
   },
   "dependencies": {
-    "psqlformat": "^0.15.0"
+    "psqlformat": "^0.16.0"
   }
 }
