@@ -64,10 +64,6 @@
           "type": "number",
           "description": "Number of spaces to indent the code"
         },
-        "pgFormatter.maxLength": {
-          "type": "number",
-          "description": "Maximum length of a query"
-        },
         "pgFormatter.commaStart": {
           "type": "boolean",
           "default": false,
