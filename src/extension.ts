@@ -23,7 +23,7 @@ export function getFormattedText(
 ): string {
   try {
     let formattingOptions: IOptions = <any>Object.assign({}, config);
-    
+
     // maxLength support has been removed and the following prevents
     // old settings from using it
     formattingOptions.maxLength = null;
@@ -80,9 +80,11 @@ export async function provideDocumentFormattingEdits(
       let config = vscode.workspace.getConfiguration("pgFormatter");
 
       let formattedText = getFormattedText(text, config, options);
-      edits.push(
-        vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
-      );
+      if (formattedText && formattedText.length > 0) { // Do not replace if formatted is empty
+        edits.push(
+          vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
+        );
+      }
     }
   }
 
