@@ -1,6 +1,6 @@
 # pgFormatter [![Build Status](https://travis-ci.org/bradymholt/vscode-pgFormatter.svg?branch=master)](https://travis-ci.org/bradymholt/vscode-pgFormatter)
 
-A VS Code extension that formats PostgresSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
+A VS Code extension that formats PostgreSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
 
 ## Features
 
