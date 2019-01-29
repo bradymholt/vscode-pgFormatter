@@ -4,6 +4,23 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.6.0] - 2019-01-29
+
+### Added
+
+- Added support for options:
+  - `commaBreak`
+  - `formatType`
+  - `placeholder`
+
+### Changed
+
+- Upgraded to pgFormatter 3.2
+
+### Removed 
+
+- Removed support for `maxLength` option (because it was confusing)
+
 ## [1.5.0] - 2018-09-12
 
 ### Changed
