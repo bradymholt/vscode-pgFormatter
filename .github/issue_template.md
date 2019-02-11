@@ -1,0 +1,1 @@
+- [ ] This is not an issue related to formatting of SQL itself.  (For formatting problems, an [issue should be created in the pgFormatter repository](https://github.com/darold/pgFormatter)).
