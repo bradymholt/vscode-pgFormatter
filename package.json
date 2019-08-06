@@ -133,12 +133,12 @@
     "vscode:publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.19",
-    "typescript": "^3.2.4",
-    "vscode": "^1.1.28"
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.9",
+    "typescript": "^3.5.3",
+    "vscode": "^1.1.36"
   },
   "dependencies": {
-    "psqlformat": "^0.18.0"
+    "psqlformat": "^1.0.0"
   }
 }
