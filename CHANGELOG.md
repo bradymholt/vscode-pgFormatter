@@ -4,6 +4,12 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.9.0] - 2019-10-04
+
+### Added
+
+Added handling for "postgres" language type.
+
 ## [1.8.0] - 2019-09-20
 
 ### Changed
