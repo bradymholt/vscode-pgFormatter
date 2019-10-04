@@ -38,7 +38,8 @@
   },
   "activationEvents": [
     "onLanguage:sql",
-    "onLanguage:pgsql"
+    "onLanguage:pgsql",
+    "onLanguage:postgres"
   ],
   "main": "./out/extension",
   "contributes": {
@@ -49,6 +50,17 @@
           "SQL",
           "sql",
           "pgsql"
+        ],
+        "extensions": [
+          "sql",
+          "pgsql"
+        ]
+      },
+      {
+        "id": "postgres",
+        "aliases": [
+          "PostgreSQL",
+          "Postgres"
         ],
         "extensions": [
           "sql",

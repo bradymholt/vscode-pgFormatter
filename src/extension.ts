@@ -55,7 +55,7 @@ export function getFormattedText(
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.languages.registerDocumentFormattingEditProvider(
-      [{ language: "sql" }, { language: "pgsql" }],
+      [{ language: "sql" }, { language: "pgsql" }, { language: "postgres" }],
       {
         provideDocumentFormattingEdits
       }
