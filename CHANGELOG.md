@@ -4,6 +4,12 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.10.0] - 2019-10-30
+
+### Added
+
+Added `noGrouping` option which adds a newline between statements in transaction regroupement
+
 ## [1.9.0] - 2019-10-04
 
 ### Added
