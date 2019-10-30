@@ -107,6 +107,11 @@
           ],
           "description": "Case of the function names"
         },
+        "pgFormatter.noGrouping": {
+          "type": "boolean",
+          "default": false,
+          "description": "Add a newline between statements in transaction regroupement"
+        },
         "pgFormatter.keywordCase": {
           "type": "string",
           "default": "uppercase",
@@ -146,11 +151,11 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.5",
-    "typescript": "^3.6.3",
+    "@types/node": "^12.12.0",
+    "typescript": "^3.6.4",
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "psqlformat": "^1.2.0"
+    "psqlformat": "^1.3.0"
   }
 }
