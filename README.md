@@ -1,4 +1,4 @@
-# pgFormatter [![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/bradymholt.pgformatter.svg)](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgformatter#overview) 
+# pgFormatter [![build](https://github.com/bradymholt/vscode-pgFormatter/workflows/build/badge.svg) [![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/bradymholt.pgformatter.svg)](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgformatter#overview) 
 
 A VS Code extension that formats PostgreSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
 
