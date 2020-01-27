@@ -4,6 +4,12 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.11.0] - 2020-01-26
+
+### Added
+
+- Updated to pgFormatter 4.2
+
 ## [1.10.0] - 2019-10-30
 
 ### Added
