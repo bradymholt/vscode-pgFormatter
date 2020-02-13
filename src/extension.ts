@@ -43,6 +43,7 @@ export function getFormattedText(
       formattingOptions.spaces = Number(options.tabSize);
     }
 
+    addToOutput(`Formatting with options ${JSON.stringify(formattingOptions)}:`)
     let formatted = formatSql(text, formattingOptions);
     return formatted;
   } catch (err) {
