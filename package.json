@@ -150,12 +150,12 @@
     "vscode:publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^13.5.0",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.7.1",
     "typescript": "^3.7.5",
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "psqlformat": "^1.4.0"
+    "psqlformat": "^1.5.0"
   }
 }
