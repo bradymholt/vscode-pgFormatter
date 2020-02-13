@@ -15,6 +15,10 @@ let outputChannel: OutputChannel;
  * @param message The message to append to the output channel
  */
 export function addToOutput(message: string): void {
+  if (!outputChannel){
+    return;
+  }
+  
   const title = `${new Date().toLocaleString()}:`;
 
   // Create a sort of title, to differentiate between messages
