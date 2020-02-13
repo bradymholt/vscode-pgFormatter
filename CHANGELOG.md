@@ -4,6 +4,12 @@ All notable changes to the "pgFormatter" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.12.0] - 2020-02-13
+
+### Added
+
+- Add `wrapLimit` option that "wrap queries at a certain length"
+
 ## [1.11.0] - 2020-01-26
 
 ### Added
