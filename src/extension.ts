@@ -42,6 +42,10 @@ export function getFormattedText(
       // If spaces config not specified, use the FormattingOptions value from VSCode workspace
       formattingOptions.spaces = Number(options.tabSize);
     }
+    if (!formattingOptions.spaces && formattingOptions.tabs === undefined) {
+      // Neither spaces nor tabs option is configured, use insertSpaces to determine if we want to use tabs
+      formattingOptions.tabs = !options.insertSpaces;
+    }
 
     addToOutput(`Formatting with options ${JSON.stringify(formattingOptions)}:`)
     let formatted = formatSql(text, formattingOptions);

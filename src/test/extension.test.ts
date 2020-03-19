@@ -70,6 +70,24 @@ FROM
     );
   });
 
+  test("useSpaces from VSCode workspace", () => {
+    let output = extension.getFormattedText(
+      "select id, first_name from people",
+      <extension.WorkspaceConfiguration>{},
+      <extension.FormattingOptions>{ insertSpaces: false }
+    );
+    assert.equal(
+      output,
+      `\
+SELECT
+\tid,
+\tfirst_name
+FROM
+\tpeople
+`
+    );
+  });
+
   test("ignoring a file", async () => {
     let document = mockupDocument(`\
 -- pgFormatter-ignore

@@ -76,6 +76,10 @@
           "type": "number",
           "description": "Number of spaces to indent the code"
         },
+        "pgFormatter.tabs": {
+          "type": "boolean",
+          "description": "Use tabs to indent code (spaces option is ignored)"
+        },
         "pgFormatter.commaStart": {
           "type": "boolean",
           "default": false,
@@ -129,7 +133,7 @@
           "description": "Use another formatting type for some statements"
         },
         "pgFormatter.wrapLimit": {
-          "type": "number",          
+          "type": "number",
           "description": "Wrap queries at a certain length"
         },
         "pgFormatter.placeholder": {
@@ -160,6 +164,6 @@
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "psqlformat": "^1.5.0"
+    "psqlformat": "^1.6.0"
   }
 }
