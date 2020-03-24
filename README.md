@@ -28,8 +28,8 @@ pgFormatter also works with the `"editor.formatOnSave": true` setting so that wh
 
 This extension has the following configuration settings:
 
-* `pgFormatter.spaces` - Number of spaces to indent the code (Default: 2)
-* `pgFormatter.tabs` - Use tabs to indent code instead of spaces (Default: false)
+* `pgFormatter.spaces` - Number of spaces to indent the code (Default: 2 or from `editor.tabSize` option)
+* `pgFormatter.tabs` - Use tabs to indent code instead of spaces (Default: false or from `editor.insertSpaces` configuration)
 * `pgFormatter.commaStart` - Use preceding comma in parameter list (Default: false)
 * `pgFormatter.commaBreak` - In insert statement, add a newline after each comma (Default: false)
 * `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: true)
