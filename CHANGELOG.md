@@ -2,7 +2,11 @@
 
 All notable changes to the "pgFormatter" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [1.13.0] - 2020-03-24
+
+### Added
+
+- Add `tabs` option that will cause tabs to be use rather than spaces
 
 ## [1.12.0] - 2020-02-13
 
