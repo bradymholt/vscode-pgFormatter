@@ -38,16 +38,21 @@ export function getFormattedText(
         CaseOptionEnum[<keyof typeof CaseOptionEnum>config.keywordCase];
     }
 
-    if (!formattingOptions.spaces && options.tabSize) {
-      // If spaces config not specified, use the FormattingOptions value from VSCode workspace
-      formattingOptions.spaces = Number(options.tabSize);
-    }
-    if (!formattingOptions.spaces && formattingOptions.tabs === undefined) {
-      // Neither spaces nor tabs option is configured, use insertSpaces to determine if we want to use tabs
-      formattingOptions.tabs = !options.insertSpaces;
+    if (!formattingOptions.spaces) {
+      if (options.tabSize) {
+        // If spaces config not specified, use the FormattingOptions value from VSCode workspace
+        formattingOptions.spaces = Number(options.tabSize);
+      }
+
+      if (formattingOptions.tabs === undefined) {
+        // Neither spaces nor tabs option is configured; use insertSpaces to determine if we want to use tabs
+        formattingOptions.tabs = options.insertSpaces === false;
+      }
     }
 
-    addToOutput(`Formatting with options ${JSON.stringify(formattingOptions)}:`)
+    addToOutput(
+      `Formatting with options ${JSON.stringify(formattingOptions)}:`
+    );
     let formatted = formatSql(text, formattingOptions);
     return formatted;
   } catch (err) {
@@ -85,7 +90,8 @@ export async function provideDocumentFormattingEdits(
       let config = vscode.workspace.getConfiguration("pgFormatter");
 
       let formattedText = getFormattedText(text, config, options);
-      if (formattedText && formattedText.length > 0) { // Do not replace if formatted is empty
+      if (formattedText && formattedText.length > 0) {
+        // Do not replace if formatted is empty
         edits.push(
           vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
         );

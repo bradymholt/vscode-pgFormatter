@@ -13,10 +13,10 @@ suite("Extension Tests", () => {
       output,
       `\
 SELECT
-\tid,
-\tfirst_name
+    id,
+    first_name
 FROM
-\tpeople
+    people
 `
     );
   });
@@ -70,7 +70,7 @@ FROM
     );
   });
 
-  test("insertSpaces from VSCode workspace", () => {
+  test("insertSpaces: true from VSCode workspace", () => {
     let output = extension.getFormattedText(
       "select id, first_name from people",
       <extension.WorkspaceConfiguration>{},
@@ -84,6 +84,24 @@ SELECT
     first_name
 FROM
     people
+`
+    );
+  });
+
+  test("insertSpaces: false from VSCode workspace", () => {
+    let output = extension.getFormattedText(
+      "select id, first_name from people",
+      <extension.WorkspaceConfiguration>{},
+      <extension.FormattingOptions>{ insertSpaces: false }
+    );
+    assert.equal(
+      output,
+      `\
+SELECT
+\tid,
+\tfirst_name
+FROM
+\tpeople
 `
     );
   });
