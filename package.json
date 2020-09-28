@@ -164,6 +164,6 @@
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "psqlformat": "^1.7.0"
+    "psqlformat": "^1.9.0"
   }
 }
