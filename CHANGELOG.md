@@ -2,6 +2,13 @@
 
 All notable changes to the "pgFormatter" extension will be documented in this file.
 
+## [1.15.0] - 2020-09-28
+
+### Changed
+
+- Upgraded to [pgFormatter 4.4](https://github.com/darold/pgFormatter/releases/tag/v4.4)
+- Fixed issue with "placeholder" option value not being wrapped with apostrophes.
+
 ## [1.14.0] - 2020-04-06
 
 ### Changed
