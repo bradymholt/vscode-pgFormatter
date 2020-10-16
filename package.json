@@ -141,6 +141,21 @@
           "default": null,
           "description": "Regex to find code that must not be changed"
         },
+        "pgFormatter.extraFunction": {
+          "type": "string",
+          "default": null,
+          "description": "Path to file containing a list of functions names to use the same formatting as PostgreSQL internal functions"
+        },        
+        "pgFormatter.pgFormatterPath": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a custom pg_format version"
+        },
+        "pgFormatter.configFile": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a pg_format config file"
+        },
         "pgFormatter.perlBinPath": {
           "type": "string",
           "default": "perl",
@@ -158,12 +173,12 @@
     "vscode:publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.1",
-    "typescript": "^3.7.5",
-    "vscode": "^1.1.36"
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.11.8",
+    "typescript": "^4.0.3",
+    "vscode": "^1.1.37"
   },
   "dependencies": {
-    "psqlformat": "^1.9.0"
+    "psqlformat": "^1.10.0"
   }
 }
