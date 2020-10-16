@@ -141,6 +141,21 @@
           "default": null,
           "description": "Regex to find code that must not be changed"
         },
+        "pgFormatter.extraFunction": {
+          "type": "string",
+          "default": null,
+          "description": "Path to file containing a list of functions names to use the same formatting as PostgreSQL internal functions"
+        },        
+        "pgFormatter.pgFormatterPath": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a custom pg_format version"
+        },
+        "pgFormatter.configFile": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a pg_format config file"
+        },
         "pgFormatter.perlBinPath": {
           "type": "string",
           "default": "perl",
