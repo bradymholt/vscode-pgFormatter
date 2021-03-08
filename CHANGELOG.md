@@ -2,7 +2,7 @@
 
 All notable changes to the "pgFormatter" extension will be documented in this file.
 
-## [1.16.0] - 2021-03-08
+## [1.17.0] - 2021-03-08
 
 ### Changed
 
