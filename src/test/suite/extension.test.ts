@@ -1,6 +1,12 @@
-import * as extension from "../extension";
-import { mockupDocument } from "./util";
-import * as assert from "assert";
+import * as extension from "../../extension";
+import * as assert from 'assert';
+
+// You can import and use all API from the 'vscode' module
+// as well as import your extension to test it
+import * as vscode from 'vscode';
+
+import { mockupDocument } from "../util";
+// import * as myExtension from '../../extension';
 
 suite("Extension Tests", () => {
   test("Formatting SQL", () => {
@@ -9,7 +15,7 @@ suite("Extension Tests", () => {
       <extension.WorkspaceConfiguration>{},
       <extension.FormattingOptions>{}
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `\
 SELECT
@@ -27,7 +33,7 @@ FROM
       <any>{ spaces: 3 },
       <extension.FormattingOptions>{ tabSize: 8 }
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `\
 SELECT
@@ -45,7 +51,7 @@ FROM
       <extension.WorkspaceConfiguration>(<any>{ maxLength: 80 }),
       <extension.FormattingOptions>{}
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `-- This is a really long comment that we do not expect to be truncated
 `
@@ -58,7 +64,7 @@ FROM
       <extension.WorkspaceConfiguration>{},
       <extension.FormattingOptions>{ tabSize: 8 }
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `\
 SELECT
@@ -76,7 +82,7 @@ FROM
       <extension.WorkspaceConfiguration>{},
       <extension.FormattingOptions>{ insertSpaces: true }
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `\
 SELECT
@@ -94,7 +100,7 @@ FROM
       <extension.WorkspaceConfiguration>{},
       <extension.FormattingOptions>{ insertSpaces: false }
     );
-    assert.equal(
+    assert.strictEqual(
       output,
       `\
 SELECT
@@ -118,6 +124,6 @@ select id, first_name from people
       null
     );
 
-    assert.equal(edits.length, 0);
+    assert.strictEqual(edits.length, 0);
   });
 });
