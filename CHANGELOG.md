@@ -2,6 +2,12 @@
 
 All notable changes to the "pgFormatter" extension will be documented in this file.
 
+## [1.18.0] - 2022-02-14
+
+### Changed
+
+- Upgraded to [pgFormatter 5.2](https://github.com/darold/pgFormatter/releases/tag/v5.2)
+
 ## [1.17.0] - 2021-03-08
 
 ### Changed
