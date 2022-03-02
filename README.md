@@ -38,7 +38,11 @@ This extension has the following configuration settings:
 * `pgFormatter.noGrouping` - Add a newline between statements in transaction regroupement (Default: false)
 * `pgFormatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "uppercase")
 * `pgFormatter.formatType` - Use another formatting type for some statements (Default: false)
+* `pgFormatter.wrapLimit` - Wrap queries at a certain length
 * `pgFormatter.placeholder` - Regex to find code that must not be changed
+* `pgFormatter.extraFunction` - Path to file containing a list of function names to use the same formatting as PostgreSQL internal functions
+* `pgFormatter.pgFormatterPath` - Path to custom pg_format version
+* `pgFormatter.configFile` - Path to a pg_format config file
 * `pgFormatter.perlBinPath` - The path to the perl executable (Default: "perl")
 
 ### Ignoring Files
