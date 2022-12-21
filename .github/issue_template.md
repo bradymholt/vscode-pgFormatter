@@ -1,2 +1,0 @@
-- [ ] This is not an issue related to formatting of SQL itself.  (For formatting problems, an [issue should be created in the pgFormatter repository](https://github.com/darold/pgFormatter)).
-- [ ] Perl is installed on my system and when I run `perl --version` from a terminal I get information about the version of Perl installed.
