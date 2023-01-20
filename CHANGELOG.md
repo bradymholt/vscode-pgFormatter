@@ -2,6 +2,13 @@
 
 All notable changes to the "pgFormatter" extension will be documented in this file.
 
+## [1.19.0] - 2022-02-14
+
+### Changed
+
+- Added support for default vscode variable substitution in configFile, perlBinPath and pgFormatterPath config parameters
+
+
 ## [1.18.0] - 2022-02-14
 
 ### Changed

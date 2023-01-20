@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { setupOutputHandler, addToOutput } from "./outputHandler";
 import { formatSql, IOptions, CaseOptionEnum } from "psqlformat";
+import { substituteVariables } from "./configUtilities";
 
 function fullDocumentRange(document: vscode.TextDocument): vscode.Range {
   const lastLineId = document.lineCount - 1;
@@ -50,6 +51,18 @@ export function getFormattedText(
       }
     }
 
+    if (config.configFile != null) {
+      formattingOptions.configFile = substituteVariables(config.configFile);
+    }
+    if (config.perlBinPath != null) {
+      formattingOptions.perlBinPath = substituteVariables(config.perlBinPath);
+    }
+    if (config.pgFormatterPath != null) {
+      formattingOptions.pgFormatterPath = substituteVariables(
+        config.pgFormatterPath
+      );
+    }
+
     addToOutput(
       `Formatting with options ${JSON.stringify(formattingOptions)}:`
     );
@@ -67,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentFormattingEditProvider(
       [{ language: "sql" }, { language: "pgsql" }, { language: "postgres" }],
       {
-        provideDocumentFormattingEdits
+        provideDocumentFormattingEdits,
       }
     ),
     setupOutputHandler()
@@ -87,7 +100,10 @@ export async function provideDocumentFormattingEdits(
       // check for ignore text
 
       const text = document.getText();
-      let config = vscode.workspace.getConfiguration("pgFormatter");
+      let config = vscode.workspace.getConfiguration(
+        "pgFormatter",
+        vscode.window.activeTextEditor.document.uri
+      );
 
       let formattedText = getFormattedText(text, config, options);
       if (formattedText && formattedText.length > 0) {
