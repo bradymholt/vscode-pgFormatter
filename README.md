@@ -9,7 +9,7 @@
 <br/>
 
 
-A VS Code extension that formats PostgreSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).
+A Visual Studio Code extension that formats PostgreSQL SQL, using the Perl based [pgFormatter](https://github.com/darold/pgFormatter) tool developed by [Gilles Darold](https://github.com/darold).  pgFormatter supports keywords from SQL-92, SQL-99, SQL-2003, SQL-2008, SQL-2011, and PostgreSQL specific keywords.
 
 ## Features
 
