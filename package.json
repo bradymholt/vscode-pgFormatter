@@ -183,6 +183,6 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "psqlformat": "1.16.0"
+    "psqlformat": "1.18.0"
   }
 }
