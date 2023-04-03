@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "pgFormatter" extension will be documented in this file.
+For releases after 1.20.0, see [the GitHub releases page](https://github.com/bradymholt/vscode-pgFormatter/releases) for details of the release.
 
 ## [1.20.0] - 2023-01-30
 
