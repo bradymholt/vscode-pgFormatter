@@ -148,7 +148,7 @@
         },
         "pgFormatter.noSpaceFunction": {
           "type": "boolean",
-          "default": null,
+          "default": true,
           "description": "Remove the space character between a function call and the open parenthesis that follows"
         },
         "pgFormatter.pgFormatterPath": {
