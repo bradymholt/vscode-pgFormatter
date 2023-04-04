@@ -39,21 +39,21 @@ This extension has the following configuration settings:
 
 * `pgFormatter.spaces` - Number of spaces to indent the code (Default: 2 or from `editor.tabSize` option)
 * `pgFormatter.tabs` - Use tabs to indent code instead of spaces (Default: false or from `editor.insertSpaces` configuration)
-* `pgFormatter.commaStart` - Use preceding comma in parameter list (Default: false)
-* `pgFormatter.commaBreak` - In insert statement, add a newline after each comma (Default: false)
-* `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: true)
-* `pgFormatter.noComment` - Remove any comments (Default: false)
-* `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "unchanged")
-* `pgFormatter.noGrouping` - Add a newline between statements in transaction regroupement (Default: false)
-* `pgFormatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: "uppercase")
-* `pgFormatter.formatType` - Use another formatting type for some statements (Default: false)
+* `pgFormatter.commaStart` - Use preceding comma in parameter list (Default: `false`)
+* `pgFormatter.commaBreak` - In insert statement, add a newline after each comma (Default: `false`)
+* `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: `true`)
+* `pgFormatter.noComment` - Remove any comments (Default: `false`)
+* `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"unchanged"`)
+* `pgFormatter.noGrouping` - Add a newline between statements in transaction regroupement (Default: `false`)
+* `pgFormatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"uppercase"`)
+* `pgFormatter.formatType` - Use another formatting type for some statements (Default: `false`)
 * `pgFormatter.wrapLimit` - Wrap queries at a certain length
 * `pgFormatter.placeholder` - Regex to find code that must not be changed
 * `pgFormatter.extraFunction` - Path to file containing a list of function names to use the same formatting as PostgreSQL internal functions
-* `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows
+* `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows (Default: `true`)
 * `pgFormatter.pgFormatterPath` - Path to custom pg_format version
 * `pgFormatter.configFile` - Path to a pg_format config file
-* `pgFormatter.perlBinPath` - The path to the perl executable (Default: "perl")
+* `pgFormatter.perlBinPath` - The path to the perl executable (Default: `"perl"`)
 
 ### Ignoring Files
 
