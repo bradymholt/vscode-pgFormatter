@@ -50,6 +50,7 @@ This extension has the following configuration settings:
 * `pgFormatter.wrapLimit` - Wrap queries at a certain length
 * `pgFormatter.placeholder` - Regex to find code that must not be changed
 * `pgFormatter.extraFunction` - Path to file containing a list of function names to use the same formatting as PostgreSQL internal functions
+* `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows
 * `pgFormatter.pgFormatterPath` - Path to custom pg_format version
 * `pgFormatter.configFile` - Path to a pg_format config file
 * `pgFormatter.perlBinPath` - The path to the perl executable (Default: "perl")

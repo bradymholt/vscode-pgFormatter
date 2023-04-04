@@ -146,6 +146,11 @@
           "default": null,
           "description": "Path to file containing a list of functions names to use the same formatting as PostgreSQL internal functions"
         },
+        "pgFormatter.noSpaceFunction": {
+          "type": "boolean",
+          "default": null,
+          "description": "Remove the space character between a function call and the open parenthesis that follows"
+        },
         "pgFormatter.pgFormatterPath": {
           "type": "string",
           "default": null,
@@ -184,6 +189,6 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "psqlformat": "1.18.0"
+    "psqlformat": "1.18.3"
   }
 }
