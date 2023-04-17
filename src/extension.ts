@@ -62,6 +62,9 @@ export function getFormattedText(
         config.pgFormatterPath
       );
     }
+    if (config.extraFunction != null) {
+      formattingOptions.extraFunction = substituteVariables(config.extraFunction);
+    }
 
     addToOutput(
       `Formatting with options ${JSON.stringify(formattingOptions)}:`
