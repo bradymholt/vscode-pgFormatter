@@ -21,10 +21,11 @@ export function getFormattedText(
     let formattingOptions: IOptions = {};
 
     if (config.configFile != null) {
+      throw new Error("configFile is no longer supported. Please use the pgFormatter.configFile setting instead.");
       formattingOptions.configFile = substituteVariables(config.configFile);
       addToOutput(`Note: Since the \`pgFormatter.configFile\` setting was specified, all other settings will be ignored.`);
     } else {
-      let formattingOptions: IOptions = <any>Object.assign({}, config);
+      formattingOptions  = <any>Object.assign({}, config);
 
       // maxLength support has been removed and the following prevents
       // old settings from using it
