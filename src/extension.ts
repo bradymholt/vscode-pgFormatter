@@ -7,12 +7,7 @@ import { substituteVariables } from "./configUtilities";
 
 function fullDocumentRange(document: vscode.TextDocument): vscode.Range {
   const lastLineId = document.lineCount - 1;
-  return new vscode.Range(
-    0,
-    0,
-    lastLineId,
-    document.lineAt(lastLineId).text.length
-  );
+  return new vscode.Range(0, 0, lastLineId, document.lineAt(lastLineId).text.length);
 }
 
 export { WorkspaceConfiguration, FormattingOptions } from "vscode";
@@ -23,52 +18,50 @@ export function getFormattedText(
   options: vscode.FormattingOptions
 ): string {
   try {
-    let formattingOptions: IOptions = <any>Object.assign({}, config);
-
-    // maxLength support has been removed and the following prevents
-    // old settings from using it
-    formattingOptions.maxLength = null;
-
-    // Convert option strings to enums
-    if (config.functionCase != null) {
-      formattingOptions.functionCase =
-        CaseOptionEnum[<keyof typeof CaseOptionEnum>config.functionCase];
-    }
-    if (config.keywordCase != null) {
-      formattingOptions.keywordCase =
-        CaseOptionEnum[<keyof typeof CaseOptionEnum>config.keywordCase];
-    }
-
-    if (!formattingOptions.spaces) {
-      if (options.tabSize) {
-        // If spaces config not specified, use the FormattingOptions value from VSCode workspace
-        formattingOptions.spaces = Number(options.tabSize);
-      }
-
-      if (formattingOptions.tabs === undefined) {
-        // Neither spaces nor tabs option is configured; use insertSpaces to determine if we want to use tabs
-        formattingOptions.tabs = options.insertSpaces === false;
-      }
-    }
+    let formattingOptions: IOptions = {};
 
     if (config.configFile != null) {
       formattingOptions.configFile = substituteVariables(config.configFile);
-    }
-    if (config.perlBinPath != null) {
-      formattingOptions.perlBinPath = substituteVariables(config.perlBinPath);
-    }
-    if (config.pgFormatterPath != null) {
-      formattingOptions.pgFormatterPath = substituteVariables(
-        config.pgFormatterPath
-      );
-    }
-    if (config.extraFunction != null) {
-      formattingOptions.extraFunction = substituteVariables(config.extraFunction);
+      addToOutput(`Note: Since the \`pgFormatter.configFile\` setting was specified, all other settings will be ignored.`);
+    } else {
+      let formattingOptions: IOptions = <any>Object.assign({}, config);
+
+      // maxLength support has been removed and the following prevents
+      // old settings from using it
+      formattingOptions.maxLength = null;
+
+      // Convert option strings to enums
+      if (config.functionCase != null) {
+        formattingOptions.functionCase = CaseOptionEnum[<keyof typeof CaseOptionEnum>config.functionCase];
+      }
+      if (config.keywordCase != null) {
+        formattingOptions.keywordCase = CaseOptionEnum[<keyof typeof CaseOptionEnum>config.keywordCase];
+      }
+
+      if (!formattingOptions.spaces) {
+        if (options.tabSize) {
+          // If spaces config not specified, use the FormattingOptions value from VSCode workspace
+          formattingOptions.spaces = Number(options.tabSize);
+        }
+
+        if (formattingOptions.tabs === undefined) {
+          // Neither spaces nor tabs option is configured; use insertSpaces to determine if we want to use tabs
+          formattingOptions.tabs = options.insertSpaces === false;
+        }
+      }
+
+      if (config.perlBinPath != null) {
+        formattingOptions.perlBinPath = substituteVariables(config.perlBinPath);
+      }
+      if (config.pgFormatterPath != null) {
+        formattingOptions.pgFormatterPath = substituteVariables(config.pgFormatterPath);
+      }
+      if (config.extraFunction != null) {
+        formattingOptions.extraFunction = substituteVariables(config.extraFunction);
+      }
     }
 
-    addToOutput(
-      `Formatting with options ${JSON.stringify(formattingOptions)}:`
-    );
+    addToOutput(`Formatting with options ${JSON.stringify(formattingOptions)}:`);
     let formatted = formatSql(text, formattingOptions);
     return formatted;
   } catch (err) {
@@ -103,17 +96,12 @@ export async function provideDocumentFormattingEdits(
       // check for ignore text
 
       const text = document.getText();
-      let config = vscode.workspace.getConfiguration(
-        "pgFormatter",
-        vscode.window.activeTextEditor.document.uri
-      );
+      let config = vscode.workspace.getConfiguration("pgFormatter", vscode.window.activeTextEditor.document.uri);
 
       let formattedText = getFormattedText(text, config, options);
       if (formattedText && formattedText.length > 0) {
         // Do not replace if formatted is empty
-        edits.push(
-          vscode.TextEdit.replace(fullDocumentRange(document), formattedText)
-        );
+        edits.push(vscode.TextEdit.replace(fullDocumentRange(document), formattedText));
       }
     }
   }

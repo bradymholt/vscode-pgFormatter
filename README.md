@@ -52,8 +52,8 @@ This extension has the following configuration settings:
 * `pgFormatter.extraFunction` - Path to file containing a list of function names to use the same formatting as PostgreSQL internal functions
 * `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows (Default: `true`)
 * `pgFormatter.pgFormatterPath` - Path to custom pg_format version
-* `pgFormatter.configFile` - Path to a pg_format config file
 * `pgFormatter.perlBinPath` - The path to the perl executable (Default: `"perl"`)
+* `pgFormatter.configFile` - The _absolute_ path to a [pg_format config file](https://github.com/darold/pgFormatter/blob/master/README).  **If this is set, all other extension settings are ignored.**  You can use a VS Code path variable to help resolve the absolute path (example: `${workspaceFolder}/pg_format.conf`).
 
 ### Ignoring Files
 
