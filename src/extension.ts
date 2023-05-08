@@ -20,8 +20,7 @@ export function getFormattedText(
   try {
     let formattingOptions: IOptions = {};
 
-    if (config.configFile != null) {
-      throw new Error("configFile is no longer supported. Please use the pgFormatter.configFile setting instead.");
+    if (config.configFile != null) {      
       formattingOptions.configFile = substituteVariables(config.configFile);
       addToOutput(`Note: Since the \`pgFormatter.configFile\` setting was specified, all other settings will be ignored.`);
     } else {
