@@ -53,7 +53,7 @@ This extension has the following configuration settings:
 * `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows (Default: `true`)
 * `pgFormatter.pgFormatterPath` - Path to custom pg_format version
 * `pgFormatter.perlBinPath` - The path to the perl executable (Default: `"perl"`)
-* `pgFormatter.configFile` - The _absolute_ path to a [pg_format config file](https://github.com/darold/pgFormatter/blob/master/README).  **If this is set, all other extension settings are ignored.**  You can use a VS Code path variable to help resolve the absolute path (example: `${workspaceFolder}/pg_format.conf`).
+* `pgFormatter.configFile` - The _absolute_ path to a [pg_format config file](https://github.com/darold/pgFormatter/blob/master/README).  You can use a VS Code path variable to help resolve the absolute path (example: `${workspaceFolder}/pg_format.conf`).  Note: The default settings for this extension may override some config in this file but you can specify a setting value to `null` to avoid this.  For example, if you want to use `no-space-function` config in a pg_format.conf file and do not want the extension default to override it, you can specify `"pgFormatter.noSpaceFunction": null` in your VS Code settings.
 
 ### Ignoring Files
 
