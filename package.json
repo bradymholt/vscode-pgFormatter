@@ -5,7 +5,7 @@
   "author": {
     "name": "Brady Holt"
   },
-  "version": "1.26.0",
+  "version": "1.27.0",
   "publisher": "bradymholt",
   "icon": "icon.png",
   "galleryBanner": {
@@ -99,7 +99,7 @@
           "type": "boolean",
           "default": false,
           "description": "Remove any comments"
-        },             
+        },
         "pgFormatter.noGrouping": {
           "type": "boolean",
           "default": false,
@@ -109,7 +109,7 @@
           "type": "boolean",
           "default": false,
           "description": "Do not add an extra empty line at end of the file"
-        },      
+        },
         "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
