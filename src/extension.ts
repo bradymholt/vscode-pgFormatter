@@ -31,6 +31,9 @@ export function getFormattedText(
     if (config.keywordCase != null) {
       formattingOptions.keywordCase = CaseOptionEnum[<keyof typeof CaseOptionEnum>config.keywordCase];
     }
+    if (config.datatypeCase != null) {
+      formattingOptions.keywordCase = CaseOptionEnum[<keyof typeof CaseOptionEnum>config.datatypeCase];
+    }
 
     if (!formattingOptions.spaces) {
       if (options.tabSize) {
