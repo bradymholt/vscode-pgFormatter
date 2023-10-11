@@ -127,7 +127,7 @@
           ],
           "description": "Case of the reserved keywords"
         },
-        "pgFormatter.datatypeCase": {
+        "pgFormatter.typeCase": {
           "type": "string",
           "default": "unchanged",
           "enum": [
@@ -136,7 +136,7 @@
             "uppercase",
             "capitalize"
           ],
-          "description": "Case of the datatype keywords"
+          "description": "Case of the data type name"
         },
         "pgFormatter.formatType": {
           "type": "boolean",
