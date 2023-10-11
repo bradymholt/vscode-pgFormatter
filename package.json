@@ -99,7 +99,17 @@
           "type": "boolean",
           "default": false,
           "description": "Remove any comments"
+        },             
+        "pgFormatter.noGrouping": {
+          "type": "boolean",
+          "default": false,
+          "description": "Add a newline between statements in transaction regroupement"
         },
+        "pgFormatter.noExtraLine": {
+          "type": "boolean",
+          "default": false,
+          "description": "Do not add an extra empty line at end of the file"
+        },      
         "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
@@ -109,12 +119,7 @@
             "uppercase",
             "capitalize"
           ],
-          "description": "Case of the function names"
-        },
-        "pgFormatter.noGrouping": {
-          "type": "boolean",
-          "default": false,
-          "description": "Add a newline between statements in transaction regroupement"
+          "description": "Case to be used for function names"
         },
         "pgFormatter.keywordCase": {
           "type": "string",
@@ -125,7 +130,18 @@
             "uppercase",
             "capitalize"
           ],
-          "description": "Case of the reserved keywords"
+          "description": "Case to be used for reserved keywords"
+        },
+        "pgFormatter.typeCase": {
+          "type": "string",
+          "default": ".lowercase",
+          "enum": [
+            "unchanged",
+            "lowercase",
+            "uppercase",
+            "capitalize"
+          ],
+          "description": "Case to be used for data type names"
         },
         "pgFormatter.formatType": {
           "type": "boolean",
@@ -135,6 +151,10 @@
         "pgFormatter.wrapLimit": {
           "type": "number",
           "description": "Wrap queries at a certain length"
+        },
+        "pgFormatter.wrapComment": {
+          "type": "boolean",
+          "description": "With pgFormatter.wrapLimit specified, apply reformatting to comments"
         },
         "pgFormatter.placeholder": {
           "type": "string",
@@ -189,6 +209,6 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "psqlformat": "1.18.3"
+    "psqlformat": "1.20.0"
   }
 }

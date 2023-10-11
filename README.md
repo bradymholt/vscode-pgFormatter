@@ -43,11 +43,14 @@ This extension has the following configuration settings:
 * `pgFormatter.commaBreak` - In insert statement, add a newline after each comma (Default: `false`)
 * `pgFormatter.commaEnd` - Use trailing comma in parameter list (Default: `true`)
 * `pgFormatter.noComment` - Remove any comments (Default: `false`)
-* `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"unchanged"`)
 * `pgFormatter.noGrouping` - Add a newline between statements in transaction regroupement (Default: `false`)
-* `pgFormatter.keywordCase` - Case of the reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"uppercase"`)
+* `pgFormatter.noExtraLine` - Do not add an extra empty line at end of the output (Default: `false`)
+* `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"unchanged"`)
+* `pgFormatter.keywordCase` - Case used for reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"uppercase"`)
+* `pgFormatter.typeCase` - Case used for data types (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"lowercase"`)
 * `pgFormatter.formatType` - Use another formatting type for some statements (Default: `false`)
 * `pgFormatter.wrapLimit` - Wrap queries at a certain length
+* `pgFormatter.wrapComment` - When wrapLimit is specified, comments will be wrapped too (Default: `false`)
 * `pgFormatter.placeholder` - Regex to find code that must not be changed
 * `pgFormatter.extraFunction` - Path to file containing a list of function names to use the same formatting as PostgreSQL internal functions
 * `pgFormatter.noSpaceFunction` - Remove the space character between a function call and the open parenthesis that follows (Default: `true`)
