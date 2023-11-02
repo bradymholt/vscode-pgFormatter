@@ -110,6 +110,11 @@
           "default": false,
           "description": "Do not add an extra empty line at end of the file"
         },
+        "pgFormatter.keepNewline": {
+          "type": "boolean",
+          "default": false,
+          "description": "Preserve empty line in plpgsql code"
+        },
         "pgFormatter.functionCase": {
           "type": "string",
           "default": "unchanged",
