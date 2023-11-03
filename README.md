@@ -45,7 +45,7 @@ This extension has the following configuration settings:
 * `pgFormatter.noComment` - Remove any comments (Default: `false`)
 * `pgFormatter.noGrouping` - Add a newline between statements in transaction regroupement (Default: `false`)
 * `pgFormatter.noExtraLine` - Do not add an extra empty line at end of the output (Default: `false`)
-* `pgFormatter.keepNewline` - Preserve empty line in plpgsql code (Default: `false`)
+* `pgFormatter.keepNewline` - Preserve empty lines (Default: `false`)
 * `pgFormatter.functionCase` - Case of the function names (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"unchanged"`)
 * `pgFormatter.keywordCase` - Case used for reserved keywords (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"uppercase"`)
 * `pgFormatter.typeCase` - Case used for data types (Options: ["unchanged", "lowercase", "uppercase", "capitalize"]; Default: `"lowercase"`)
