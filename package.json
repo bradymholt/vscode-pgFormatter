@@ -214,6 +214,6 @@
     "@vscode/test-electron": "^2.5.2"
   },
   "dependencies": {
-    "psqlformat": "^1.30.0"
+    "psqlformat": "^1.33.0"
   }
 }
