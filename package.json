@@ -209,11 +209,11 @@
     "@types/vscode": "^1.54.0",
     "@vscode/vsce": "^2.19.0",
     "glob": "^7.1.6",
-    "mocha": "^10.8.2",
+    "mocha": "^7.2.0",
     "typescript": "^4.1.3",
-    "vscode-test": "^1.5.0"
+    "@vscode/test-electron": "^2.5.2"
   },
   "dependencies": {
-    "psqlformat": "^1.30.0"
+    "psqlformat": "^1.33.0"
   }
 }
