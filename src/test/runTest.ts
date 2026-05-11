@@ -1,9 +1,13 @@
 import * as path from 'path';
 
-import { runTests } from 'vscode-test';
+import { runTests } from '@vscode/test-electron';
 
 async function main() {
 	try {
+		// When running tests from inside VS Code's integrated terminal, this env
+		// var is inherited and makes the spawned Electron binary act as Node.
+		delete process.env.ELECTRON_RUN_AS_NODE;
+
 		// The folder containing the Extension Manifest package.json
 		// Passed to `--extensionDevelopmentPath`
 		const extensionDevelopmentPath = path.resolve(__dirname, '../../');
