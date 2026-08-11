@@ -1,6 +1,44 @@
 import * as path from 'path';
+import * as fs from 'fs';
 
-import { runTests } from '@vscode/test-electron';
+import { downloadAndUnzipVSCode, runTests } from '@vscode/test-electron';
+
+function resolveMacOSExecutablePath(vscodeExecutablePath: string): string {
+	if (process.platform !== 'darwin' || fs.existsSync(vscodeExecutablePath)) {
+		return vscodeExecutablePath;
+	}
+
+	const macOSDir = path.dirname(vscodeExecutablePath);
+	const contentsDir = path.dirname(macOSDir);
+	const infoPlistPath = path.join(contentsDir, 'Info.plist');
+
+	try {
+		const infoPlist = fs.readFileSync(infoPlistPath, 'utf8');
+		const match = infoPlist.match(/<key>CFBundleExecutable<\/key>\s*<string>([^<]+)<\/string>/);
+		if (match) {
+			const resolvedExecutablePath = path.join(macOSDir, match[1]);
+			if (fs.existsSync(resolvedExecutablePath)) {
+				return resolvedExecutablePath;
+			}
+		}
+	} catch {
+		// Fall back to scanning the app bundle contents below.
+	}
+
+	try {
+		const executables = fs.readdirSync(macOSDir, { withFileTypes: true })
+			.filter(entry => entry.isFile())
+			.map(entry => path.join(macOSDir, entry.name));
+
+		if (executables.length === 1) {
+			return executables[0];
+		}
+	} catch {
+		// Fall back to the original path if the bundle can't be inspected.
+	}
+
+	return vscodeExecutablePath;
+}
 
 async function main() {
 	try {
@@ -15,9 +53,12 @@ async function main() {
 		// The path to test runner
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
+		const vscodeExecutablePath = resolveMacOSExecutablePath(
+			await downloadAndUnzipVSCode({ extensionDevelopmentPath })
+		);
 
 		// Download VS Code, unzip it and run the integration test
-		await runTests({ extensionDevelopmentPath, extensionTestsPath });
+		await runTests({ extensionDevelopmentPath, extensionTestsPath, vscodeExecutablePath });
 	} catch (err) {
 		console.error('Failed to run tests');
 		process.exit(1);
